@@ -46,5 +46,22 @@
           inputsFrom = [ fenix-tools.minimal ];
         };
       }
-    );
+    )
+    // {
+      templates = {
+        rust = {
+          path = ./templates/rust;
+          description = "Rust binary project with Nix dev shell";
+        };
+        python = {
+          path = ./templates/python;
+          description = "Python project with uv/Hatch configuration";
+        };
+        nixos-module = {
+          path = ./templates/nixos-module;
+          description = "NixOS module template";
+        };
+      };
+      defaultTemplate = self.templates.rust;
+    };
 }
