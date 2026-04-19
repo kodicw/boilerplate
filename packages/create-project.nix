@@ -11,12 +11,14 @@ Usage:
   create-project <template> [project-name]
 
 Templates:
+  general      General-purpose, language-agnostic template
   rust         Rust binary project with Nix dev shell
   python       Python project with uv/Hatch configuration
   nixos-module NixOS module template
 
 Examples:
-  create-project rust my-app     # Creates ./my-app/ from rust template
+  create-project general my-app  # Creates ./my-app/ from general template
+  create-project rust my-rust    # Creates ./my-rust/ from rust template
   create-project python          # Creates ./python-project/ in current dir
   create-project nixos-module    # Creates ./nixos-module/ in current dir
 "
@@ -39,7 +41,7 @@ project_name=""
 
 # Determine project directory
 if [[ $# -lt 2 || -z "$2" ]]; then
-  project_name="${template_name}-project"
+  project_name="''${template_name}-project"
   echo "No project name provided. Creating in current directory as '$project_name'."
 else
   project_name="$2"
@@ -70,7 +72,7 @@ replace_in_file() {
   local desc="$3"
   local content
   content=$(cat "$file")
-  new_content=$(echo "$content" | sed "s/\${PROJECT_NAME}/$name/g; s/\${PROJECT_DESCRIPTION}/$desc/g")
+  new_content=$(echo "$content" | sed "s/''${PROJECT_NAME}/$name/g; s/''${PROJECT_DESCRIPTION}/$desc/g")
   if [[ "$content" != "$new_content" ]]; then
     echo "$new_content" > "$file"
   fi
@@ -84,7 +86,7 @@ process_dir() {
     if [[ -d "$entry" ]]; then
       process_dir "$entry" "$name" "$desc"
     elif [[ -f "$entry" ]]; then
-      local ext="${entry##*.}"
+      local ext="''${entry##*.}"
       case "$ext" in
         rs|toml|nix|md|txt|json|yaml|yml)
           replace_in_file "$entry" "$name" "$desc"
@@ -107,6 +109,10 @@ echo "  Template: $template_name"
 echo
 echo "Next steps:"
 case "$template_name" in
+  general)
+    echo "  cd $project_name"
+    echo "  nix develop"
+    ;;
   rust)
     echo "  cd $project_name"
     echo "  nix develop"

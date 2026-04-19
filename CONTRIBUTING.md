@@ -15,6 +15,7 @@
 5. [Git Hooks](#5-git-hooks)
 6. [Pull Request Process](#6-pull-request-process)
 7. [Hook Installation](#7-hook-installation)
+8. [Community & Security](#8-community-and-security)
 
 ---
 
@@ -627,3 +628,15 @@ All hooks assume the following tools are available. They are provided by the Nix
 | `nix` | `pre-push` | system Nix installation |
 
 Outside the dev shell, hooks that cannot find their tools will fail with a clear error rather than silently passing.
+
+---
+
+## 8. Community & Security
+
+We maintain high standards for community health and infrastructure security. Please refer to the following documents for more information:
+
+- **[Code of Conduct](./CODE_OF_CONDUCT.md)**: Our expectations for participant behavior.
+- **[Security Policy](./SECURITY.md)**: How to report vulnerabilities and our security standards.
+- **[Support Guide](./SUPPORT.md)**: How to get help with templates and infrastructure.
+- **[Governance](./GOVERNANCE.md)**: How decisions are made regarding project standards.
+- **[Changelog](./CHANGELOG.md)**: Tracking notable changes to the repository.

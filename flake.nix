@@ -49,6 +49,10 @@
     )
     // {
       templates = {
+        general = {
+          path = ./templates/general;
+          description = "General-purpose, language-agnostic template";
+        };
         rust = {
           path = ./templates/rust;
           description = "Rust binary project with Nix dev shell";
@@ -62,6 +66,6 @@
           description = "NixOS module template";
         };
       };
-      defaultTemplate = self.templates.rust;
+      defaultTemplate = self.templates.general;
     };
 }
