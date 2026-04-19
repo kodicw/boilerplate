@@ -12,22 +12,23 @@ This repository provides a set of high-quality templates and a CLI tool (`create
 
 ## Getting Started
 
-To use these templates to kickstart a new project:
+To use these templates to kickstart a new project without cloning this repository:
 
-1.  **Enter the Environment**:
-    ```bash
-    nix develop
-    ```
-2.  **Create a New Project**:
-    ```bash
-    # Usage: create-project <template> [project-name]
-    create-project general my-infrastructure
-    ```
+```bash
+# Usage: nix run github:kodicw/nix-project-templates -- <template> [project-name]
+nix run github:kodicw/nix-project-templates -- general my-infrastructure
+```
+
+If you have the repository cloned locally:
+
+```bash
+nix run . -- general my-infrastructure
+```
 
 ## Repository Structure
 
 - `packages/`: Source for the `create-project` CLI tool.
-- `templates/`: The actual project blueprints (NixOS modules, Rust, Python, etc.).
+- `templates/`: The actual project blueprints. Every template includes a full suite of community and infrastructure documents (`CODE_OF_CONDUCT.md`, `SECURITY.md`, etc.).
 - `docs/`: Engineering standards and community health documents (meant to be adapted for your own repo).
 
 ## Customization Checklist
