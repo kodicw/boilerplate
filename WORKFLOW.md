@@ -20,7 +20,7 @@ nix develop
 nix develop --command <cmd>
 ```
 
-The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolchain, `nixfmt-rfc-style`, and `statix`.
+The dev shell provides: `nixfmt-rfc-style` and `statix`.
 
 ---
 
@@ -30,7 +30,7 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
 
 ### Actions
 1. Define the feature/change scope in plain language.
-2. Identify which parts of the repo are affected (templates, CLI, flake, packages).
+2. Identify which parts of the repo are affected (templates, root flake, docs).
 3. Review existing conventions (see [Project Structure](#project-structure) and [Conventions](#conventions) below).
 4. If the change touches Nix: read the relevant `flake.nix` (root or template-level) first.
 
@@ -45,13 +45,12 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
 **Objective:** Establish the foundational data models, types, and configuration shapes.
 
 ### Actions
-1. Prompt the LLM to define required data structures (Rust types, Nix attrsets, template schemas).
+1. Prompt the LLM to define required data structures (Nix attrsets, template schemas).
 2. For Nix changes: define the attribute structure (`inputs`, `outputs`, module options) before writing any implementation.
-3. For Rust CLI changes: define structs, enums, and error types first.
 
 ### Gate
 - **Review, correct, and finalize all structures manually** before moving forward.
-- Ensure types follow naming conventions (see [Rust Code Style](#rust-code-style)).
+- Ensure types follow naming conventions (see [Conventions](#conventions)).
 
 ---
 
@@ -60,15 +59,13 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
 **Objective:** Define boundaries and communication layers without implementation.
 
 ### Actions
-1. Instruct the LLM to generate API stubs and function signatures based on Phase 1 structures.
-2. For the CLI: stub out command handlers, argument parsing, and template discovery functions.
-3. For Nix modules: define option declarations (`mkOption`, `mkEnableOption`) with types and descriptions, but with empty/trivial `config` blocks.
-4. For templates: create the file tree with placeholder content using `${PROJECT_NAME}` and `${PROJECT_DESCRIPTION}` variables.
+1. Instruct the LLM to generate stubs and function signatures based on Phase 1 structures.
+2. For Nix modules: define option declarations (`mkOption`, `mkEnableOption`) with types and descriptions, but with empty/trivial `config` blocks.
+3. For templates: create the file tree with sensible defaults (e.g., `my-project`).
 
 ### Gate
-- Stubs compile/evaluate cleanly:
+- Stubs evaluate cleanly:
   ```bash
-  nix develop --command cargo check    # Rust stubs type-check
   nix flake check                      # Nix evaluates without errors
   ```
 - Strict alignment with the architectural design from Phase 0.
@@ -84,7 +81,6 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
 2. Each TODO must reference a specific file, function, or Nix attribute.
 3. Group TODOs by subsystem:
    - `templates/` — template file additions/modifications
-   - `packages/` — CLI script or Nix package changes
    - `flake.nix` — root flake output changes
    - Docs — `README.md`, `CONTRIBUTING.md`, `WORKFLOW.md` updates
 
@@ -105,15 +101,7 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
    # Nix evaluation
    nix flake check
 
-   # Rust compilation + linting
-   nix develop --command cargo build
-   nix develop --command cargo clippy -- -D warnings
-
-   # Rust tests
-   nix develop --command cargo test
-
    # Formatting checks
-   nix develop --command cargo fmt -- --check
    nixfmt --check flake.nix
 
    # Nix linting
@@ -138,9 +126,8 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
 
 ### Actions
 1. Define and inject constraints, guardrails, and invariant checks:
-   - **Rust:** No bare `unwrap()`. Use `expect("context")` or proper error handling. Clippy lints enforced: `unwrap_used`, `panic`, `todo`, `dbg_macro`, `print_stdout`.
    - **Nix:** No hardcoded secrets. Use `nixfmt-rfc-style` (never `nixpkgs-fmt`). `statix check .` must pass.
-   - **Templates:** All template files must use consistent `${PROJECT_NAME}` / `${PROJECT_DESCRIPTION}` placeholders.
+   - **Templates:** All template files must use `my-project` as the default project name.
 2. Ensure template output is self-contained — a generated project must `nix flake check` independently.
 
 ### Gate
@@ -211,24 +198,25 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
 - **Formatter:** `nixfmt` (RFC-style). Never `nixpkgs-fmt`.
 - **Linter:** `statix check .` — catches unnecessary `with`, deprecated builtins, redundant `let ... in`.
 - **No hardcoded secrets.** Ever.
-- **Inputs:** Pin to `nixos-unstable` by default. Use `follows` to deduplicate shared inputs (e.g., `fenix.inputs.nixpkgs.follows`).
+- **Inputs:** Pin to `nixos-unstable` by default. Use `follows` to deduplicate shared inputs where applicable.
 
-### Rust Code Style
+### Rust Code Style (Templates)
+
+> These conventions apply to **Rust-based template projects** (e.g., `templates/rust/`), not the boilerplate repo itself — the root repo contains no Rust code.
+
 - **Formatting:** `cargo fmt` — default rustfmt configuration is authoritative.
 - **Clippy:** `-D warnings` enforced. Warn on: `unwrap_used`, `panic`, `todo`, `dbg_macro`, `print_stdout`.
-- **Logging:** `eprintln!` for errors, `println!` for user-facing output. This is a CLI, not a service.
 - **Error handling:** No bare `unwrap()`. Use `expect("context")` or proper `Result` propagation.
 - **Imports:** Group by: standard library → external crates → local modules.
 - **Tests:** Unit tests in `#[cfg(test)]` modules at the bottom of each source file.
 - **Naming:** Types `PascalCase`, functions/variables/modules `snake_case`.
 
 ### Template Files
-- Use `${PROJECT_NAME}` and `${PROJECT_DESCRIPTION}` placeholders for text replacement during project creation.
+- Template files use `my-project` as a default name. Users rename after running `nix flake init`.
 - When adding new templates:
-  1. Use consistent placeholder names.
-  2. Include language-appropriate configuration files.
-  3. Provide sensible defaults that pass `nix flake check` out of the box.
-  4. Add template-specific documentation if behavior isn't obvious.
+  1. Include language-appropriate configuration files.
+  2. Provide sensible defaults that pass `nix flake check` out of the box.
+  3. Add template-specific documentation if behavior isn't obvious.
 
 ### Commit Messages
 
@@ -243,7 +231,7 @@ chore(nix): bump nixpkgs input to 24.11
 ```
 
 **Types:** `feat` `fix` `refactor` `test` `chore` `docs` `perf` `ci` `revert`
-**Scopes:** `template` `nix` `docs`
+**Scopes:** `template` `nix` `docs` `ci`
 **Subject rules:** imperative mood, no capital first letter, no trailing period, max 72 chars.
 
 ## Usage

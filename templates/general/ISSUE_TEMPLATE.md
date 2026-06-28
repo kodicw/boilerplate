@@ -7,11 +7,7 @@
 ### Description
 <!-- A clear and concise description of what the bug is. -->
 
-### Infrastructure Impact
-<!-- How does this bug affect NixOS configuration, Docker/container definitions, or the deployment process? -->
-
 ### Reproduction Steps
-<!-- Steps to reproduce the behavior. -->
 1. ...
 2. ...
 3. ...
@@ -20,25 +16,21 @@
 <!-- What you expected to happen. -->
 
 ### Environment
-- **Project Template**: (e.g., `general`, `nixos-module`, `rust`)
-- **NixOS Version**: (if applicable)
-- **Docker/Container Runtime Version**: (if applicable)
+- **OS**: 
+- **Nix version**: 
 
 ---
 
 ## Feature Request
 
 ### Problem Statement
-<!-- Is your feature request related to a problem? Please describe. -->
+<!-- Is your feature request related to a problem? -->
 
 ### Proposed Solution
-<!-- A clear and concise description of what you want to happen. -->
+<!-- A clear description of what you want to happen. -->
 
 ### Alternatives Considered
-<!-- Any alternative solutions or features you've considered. -->
-
-### Additional Context
-<!-- Add any other context or screenshots about the feature request here. -->
+<!-- Any alternative solutions you've considered. -->
 
 ---
 
@@ -48,4 +40,4 @@
 <!-- What would you like to discuss or ask about? -->
 
 ### Context
-<!-- Provide any necessary background information for the discussion. -->
+<!-- Provide any necessary background information. -->

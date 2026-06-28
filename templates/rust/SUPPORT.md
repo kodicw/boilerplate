@@ -6,32 +6,16 @@ Welcome! This document describes how to get help with this project.
 
 ### 1. Check Documentation
 
-Before asking for help, please review the relevant documentation:
-- [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution and engineering standards.
-- Template-specific `README.md` files (e.g., [general/README.md](./templates/general/README.md)).
+Before asking for help, please review:
+- [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution standards.
 - [NixOS Manual](https://nixos.org/manual/nixos/stable/)
-- [Docker Documentation](https://docs.docker.com/)
 
 ### 2. Search Existing Issues
 
-Search our [GitHub Issues](https://github.com/my-project/issues) to see if your problem has already been addressed.
+Search our GitHub Issues to see if your problem has already been addressed.
 
 ### 3. Open a Support Request
 
 If you cannot find an answer, please open an issue:
 - Use the **Bug Report** or **Feature Request** templates if applicable.
-- For general questions, use the **Question** template or a GitHub Discussion if enabled.
-
-## Infrastructure Stack Support
-
-Our templates are designed around a modular infrastructure stack:
-- **Nix Flakes**: For reproducible project and development environments.
-- **NixOS**: For declarative system configuration.
-- **Docker & OCI Images**: For containerized workload distribution and isolation.
-- **Standard Tooling**: Utilizing `nixfmt`, `docker-compose`, and other industry-standard tools.
-
-If your issue is related to these technologies but not our specific templates, we recommend checking their official community forums.
-
-## Priority Support
-
-For internal users, please follow the standard internal communication channels (e.g., `#infra-support` on Slack) for faster response times regarding critical production issues.
+- For general questions, use the **Question** template.

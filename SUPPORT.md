@@ -1,16 +1,16 @@
 # Support
 
-Welcome! We are here to help you build projects using our Nix-backed templates.
+Welcome! This document describes how to get help with boilerplate project templates.
 
 ## How to Get Support
 
 ### 1. Check Documentation
 
-Before asking for help, please review the relevant documentation:
-- [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution and engineering standards.
-- Template-specific `README.md` files (e.g., [general/README.md](./templates/general/README.md)).
+Before asking for help, please review:
+- [README.md](./README.md) for usage instructions.
+- [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution standards.
+- Template-specific files within each template directory.
 - [NixOS Manual](https://nixos.org/manual/nixos/stable/)
-- [Docker Documentation](https://docs.docker.com/)
 
 ### 2. Search Existing Issues
 
@@ -20,18 +20,11 @@ Search our [GitHub Issues](https://github.com/kodicw/boilerplate/issues) to see 
 
 If you cannot find an answer, please open an issue:
 - Use the **Bug Report** or **Feature Request** templates if applicable.
-- For general questions, use the **Question** template or a GitHub Discussion if enabled.
+- For general questions, use the **Question** template.
 
-## Infrastructure Stack Support
+## Template Support
 
-Our templates are designed around a modular infrastructure stack:
-- **Nix Flakes**: For reproducible project and development environments.
-- **NixOS**: For declarative system configuration.
-- **Docker & OCI Images**: For containerized workload distribution and isolation.
-- **Standard Tooling**: Utilizing `nixfmt`, `docker-compose`, and other industry-standard tools.
-
-If your issue is related to these technologies but not our specific templates, we recommend checking their official community forums.
-
-## Priority Support
-
-For internal users, please follow the standard internal communication channels (e.g., `#infra-support` on Slack) for faster response times regarding critical production issues.
+Each template is designed to work with `nix flake init`. If you encounter issues:
+1. Ensure you have a recent version of Nix with flakes enabled.
+2. Try `nix flake init -t github:kodicw/boilerplate#<template>` in an empty directory.
+3. Check that `nix flake check` passes in the initialized project.
