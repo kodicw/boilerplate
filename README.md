@@ -15,8 +15,8 @@ This repository provides a set of high-quality templates and a CLI tool (`create
 To use these templates to kickstart a new project without cloning this repository:
 
 ```bash
-# Usage: nix run github:kodicw/nix-project-templates -- <template> [project-name]
-nix run github:kodicw/nix-project-templates -- general my-infrastructure
+# Usage: nix run github:kodicw/boilerplate -- <template> [project-name]
+nix run github:kodicw/boilerplate -- general my-infrastructure
 ```
 
 If you have the repository cloned locally:
