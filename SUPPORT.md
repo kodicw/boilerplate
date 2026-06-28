@@ -1,6 +1,6 @@
-# Support for Infrastructure Templates
+# Support
 
-Welcome! We are here to help you build robust infrastructure using our Nix and container-based templates.
+Welcome! We are here to help you build projects using our Nix-backed templates.
 
 ## How to Get Support
 
@@ -14,7 +14,7 @@ Before asking for help, please review the relevant documentation:
 
 ### 2. Search Existing Issues
 
-Search our [GitHub Issues](https://github.com/your-username/your-repo/issues) to see if your problem has already been addressed.
+Search our [GitHub Issues](https://github.com/kodicw/boilerplate/issues) to see if your problem has already been addressed.
 
 ### 3. Open a Support Request
 

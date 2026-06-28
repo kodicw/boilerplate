@@ -1,5 +1,5 @@
 {
-  description = "Nix project templates and create-project CLI";
+  description = "boilerplate — project templates and create-project CLI";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

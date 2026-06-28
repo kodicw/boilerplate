@@ -1,7 +1,7 @@
 # Contributing Guide: Code Standards & Engineering Practices
 
-**Project:** templates  
-**Version:** 1.0  
+**Project:** boilerplate  
+**Version:** 1.1  
 **Date:** 2026-04-11
 
 ---

@@ -1,6 +1,6 @@
-# Support for Infrastructure Templates
+# Support
 
-Welcome! We are here to help you build robust infrastructure using our Nix and container-based templates.
+Welcome! This document describes how to get help with this project.
 
 ## How to Get Support
 
@@ -14,7 +14,7 @@ Before asking for help, please review the relevant documentation:
 
 ### 2. Search Existing Issues
 
-Search our [GitHub Issues](https://github.com/your-username/your-repo/issues) to see if your problem has already been addressed.
+Search our [GitHub Issues](https://github.com/${PROJECT_NAME}/issues) to see if your problem has already been addressed.
 
 ### 3. Open a Support Request
 

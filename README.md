@@ -1,43 +1,51 @@
-# Nix & Container Infrastructure Templates
+# boilerplate
 
-**⚠️ IMPORTANT: This is a reference template, not a "turn-key" solution.**
+Project templates and a CLI tool (`create-project`) for scaffolding reproducible, Nix-backed projects.
 
-This repository provides a set of high-quality templates and a CLI tool (`create-project`) for initializing infrastructure-as-code projects. It is designed as a **starting point and engineering guide** for building robust, declarative systems using NixOS, Docker, and modern CI/CD practices.
+## Philosophy
 
-## Project Philosophy
+1. **Guidance over Gospel** — Every file is a starting point. Modify, rename, or delete to suit your needs.
+2. **Reproducibility** — Nix flakes ensure every project starts with a deterministic environment.
+3. **Security by Design** — Templates default to least-privilege patterns and no hardcoded secrets.
 
-1.  **Guidance over Gospel**: Every file in this repository is a suggestion. You are expected to modify, rename, or delete files to suit your specific architectural needs.
-2.  **Infrastructure as Code**: Focus on reproducibility and declarative configuration at every layer.
-3.  **Security by Design**: Patterns for least privilege, secret management, and sandboxing are included as defaults.
-
-## Getting Started
-
-To use these templates to kickstart a new project without cloning this repository:
+## Quick Start
 
 ```bash
-# Usage: nix run github:kodicw/boilerplate -- <template> [project-name]
-nix run github:kodicw/boilerplate -- general my-infrastructure
+# Scaffold a project directly from GitHub (no clone required)
+nix run github:kodicw/boilerplate -- <template> [project-name]
+nix run github:kodicw/boilerplate -- general my-app
+
+# Or use nix flake init for template-only scaffolding
+nix flake init -t github:kodicw/boilerplate#rust
+nix flake init -t github:kodicw/boilerplate#general
 ```
 
-If you have the repository cloned locally:
+From a local clone:
 
 ```bash
-nix run . -- general my-infrastructure
+nix build
+./result/bin/create-project rust my-app
+./result/bin/create-project python
+./result/bin/create-project nixos-module
 ```
 
-## Repository Structure
+## Available Templates
 
-- `packages/`: Source for the `create-project` CLI tool.
-- `templates/`: The actual project blueprints. Every template includes a full suite of community and infrastructure documents (`CODE_OF_CONDUCT.md`, `SECURITY.md`, etc.).
-- `docs/`: Engineering standards and community health documents (meant to be adapted for your own repo).
+| Template | Description |
+|----------|-------------|
+| `general` | Language-agnostic starter with Nix dev shell |
+| `rust` | Rust binary with fenix toolchain and Nix dev shell |
+| `python` | Python project with uv/Hatch and ruff |
+| `nixos-module` | NixOS service module skeleton |
 
-## Customization Checklist
+Each template includes community health files (CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, etc.) and a `flake.nix` that passes `nix flake check` out of the box.
 
-When initializing a new project from these templates, you should immediately review and update:
-- [ ] **License headers**: Ensure they match your organization's requirements.
-- [ ] **Contact info**: Update email placeholders in `SECURITY.md` and `CODE_OF_CONDUCT.md`.
-- [ ] **Infrastructure settings**: Adjust NixOS options and Docker resource limits in the generated code.
-- [ ] **CI/CD pipeline**: Update the flake checks to match your deployment target.
+## Development
 
----
-*This project is part of our internal infrastructure standardization efforts. Use it as a guide, but remember: you own the code you generate.*
+```bash
+nix develop          # Enter dev shell (rust-analyzer, clippy, nixfmt, statix)
+nix flake check      # Run all checks
+```
+
+See [WORKFLOW.md](./WORKFLOW.md) for the structured AI-assisted development process.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for code standards and engineering practices.

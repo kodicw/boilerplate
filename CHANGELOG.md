@@ -7,16 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- `CODE_OF_CONDUCT.md` for community health standards.
-- `SECURITY.md` for infrastructure vulnerability reporting.
-- `SUPPORT.md` for infrastructure-specific help guidance.
-- `GOVERNANCE.md` for decision-making processes.
-- `PULL_REQUEST_TEMPLATE.md` with infrastructure validation checklists.
-- `ISSUE_TEMPLATE.md` for structured feedback.
-
 ### Changed
-- Updated `CONTRIBUTING.md` alignment.
+- Renamed repository from `nix-project-templates` to `boilerplate`.
+- Replaced `AGENTS.md` with `WORKFLOW.md` — structured LLM programming workflow.
+- Updated all flake URIs and documentation references.
+
+### Added
+- `WORKFLOW.md` — phased AI-assisted development workflow integrated with Nix tooling.
+
+### Removed
+- `AGENTS.md` — replaced by `WORKFLOW.md`.
 
 ## [1.0.0] - 2026-04-11
 
@@ -26,4 +26,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `rust` template.
 - `python` template.
 - `nixos-module` template.
-- Initial `CONTRIBUTING.md` and `AGENTS.md`.
+- Community health files: `CODE_OF_CONDUCT.md`, `SECURITY.md`, `SUPPORT.md`, `GOVERNANCE.md`, `CONTRIBUTING.md`, `PULL_REQUEST_TEMPLATE.md`, `ISSUE_TEMPLATE.md`.
