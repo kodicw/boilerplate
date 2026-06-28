@@ -40,6 +40,10 @@
           path = ./templates/python;
           description = "Python project with uv/Hatch configuration";
         };
+        go = {
+          path = ./templates/go;
+          description = "Go project with Nix dev shell";
+        };
         nixos-module = {
           path = ./templates/nixos-module;
           description = "NixOS module template";

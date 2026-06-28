@@ -30,6 +30,7 @@ After init, rename `my-project` references in `flake.nix`, `Cargo.toml`, `pyproj
 | `general` | Language-agnostic starter with Nix dev shell | `nix flake init -t github:kodicw/boilerplate#general` |
 | `rust` | Rust binary with fenix toolchain and Nix dev shell | `nix flake init -t github:kodicw/boilerplate#rust` |
 | `python` | Python project with uv/Hatch and ruff | `nix flake init -t github:kodicw/boilerplate#python` |
+| `go` | Go project with golangci-lint and Nix dev shell | `nix flake init -t github:kodicw/boilerplate#go` |
 | `nixos-module` | NixOS service module skeleton | `nix flake init -t github:kodicw/boilerplate#nixos-module` |
 
 Each template includes a `STYLE.md` with language-specific conventions, a `CONTRIBUTING.md`, and a `flake.nix` that works out of the box.
