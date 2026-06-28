@@ -32,7 +32,7 @@ After init, rename `my-project` references in `flake.nix`, `Cargo.toml`, `pyproj
 | `python` | Python project with uv/Hatch and ruff | `nix flake init -t github:kodicw/boilerplate#python` |
 | `nixos-module` | NixOS service module skeleton | `nix flake init -t github:kodicw/boilerplate#nixos-module` |
 
-Each template includes community health files (CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, etc.) and a `flake.nix` that works out of the box.
+Each template includes a `STYLE.md` with language-specific conventions, a `CONTRIBUTING.md`, and a `flake.nix` that works out of the box.
 
 ## Development
 

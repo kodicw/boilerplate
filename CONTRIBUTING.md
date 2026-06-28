@@ -13,7 +13,7 @@
 3. [Code Style & Formatting](#3-code-style--formatting)
 4. [Adding New Templates](#4-adding-new-templates)
 5. [Pull Request Process](#5-pull-request-process)
-6. [Community & Security](#6-community--security)
+6. [Community](#6-community)
 
 ---
 
@@ -217,10 +217,7 @@ All PRs are **squash-merged** into `main`.
 
 ---
 
-## 6. Community & Security
+## 6. Community
 
-- **[Code of Conduct](./CODE_OF_CONDUCT.md)**: Our expectations for participant behavior.
-- **[Security Policy](./SECURITY.md)**: How to report vulnerabilities.
-- **[Support Guide](./SUPPORT.md)**: How to get help.
-- **[Governance](./GOVERNANCE.md)**: How decisions are made.
 - **[Changelog](./CHANGELOG.md)**: Notable changes.
+- **[Workflow](./WORKFLOW.md)**: Structured AI-assisted development process.

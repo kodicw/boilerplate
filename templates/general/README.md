@@ -2,20 +2,17 @@
 
 A new project.
 
-## Overview
-
-This is a general-purpose, language-agnostic project initialized from a Nix template.
-
 ## Getting Started
 
-1.  Enter the development environment:
-    ```bash
-    nix develop
-    ```
-2.  Your development tools are now available!
+```bash
+nix develop      # Enter dev shell (nixfmt, statix)
+```
 
-## Features
+## Development
 
-- **Nix Flake**: Reproducible development environment.
-- **nixfmt-rfc-style**: Official Nix code formatter.
-- **statix**: Linter for the Nix language.
+```bash
+nixfmt flake.nix     # Format Nix
+statix check .       # Lint Nix
+```
+
+See [STYLE.md](./STYLE.md) for conventions.

@@ -162,34 +162,31 @@ The dev shell provides: `nixfmt-rfc-style` and `statix`.
 
 ```
 .
-├── templates/                # Project templates (copied verbatim on create)
+├── templates/                # Project templates (copied verbatim by nix flake init)
 │   ├── general/              # Language-agnostic starter
 │   │   ├── flake.nix
 │   │   ├── .gitignore
 │   │   ├── README.md
 │   │   ├── CHANGELOG.md
-│   │   ├── CODE_OF_CONDUCT.md
 │   │   ├── CONTRIBUTING.md
-│   │   ├── GOVERNANCE.md
-│   │   ├── ISSUE_TEMPLATE.md
-│   │   ├── PULL_REQUEST_TEMPLATE.md
-│   │   ├── SECURITY.md
-│   │   └── SUPPORT.md
+│   │   └── STYLE.md          # Nix conventions
 │   ├── rust/                 # Rust binary with Nix dev shell
 │   │   ├── Cargo.toml
 │   │   ├── rustfmt.toml
 │   │   ├── flake.nix
+│   │   ├── STYLE.md          # Rust + Nix conventions
 │   │   └── src/main.rs
 │   ├── python/               # Python project with uv/Hatch
-│   │   └── pyproject.toml
+│   │   ├── pyproject.toml
+│   │   └── STYLE.md          # Python + Nix conventions
 │   └── nixos-module/         # NixOS module
-│       └── default.nix
+│       ├── default.nix
+│       └── STYLE.md          # NixOS module conventions
 ├── flake.nix                 # Root flake — exposes devShells and templates
-├── flake.lock
 ├── README.md
 ├── CONTRIBUTING.md
-├── WORKFLOW.md               # ← You are here
-└── (community docs)          # CODE_OF_CONDUCT, GOVERNANCE, SECURITY, SUPPORT, etc.
+├── CHANGELOG.md
+└── WORKFLOW.md               # ← You are here
 ```
 
 ## Conventions
