@@ -14,7 +14,7 @@ Before asking for help, please review the relevant documentation:
 
 ### 2. Search Existing Issues
 
-Search our [GitHub Issues](https://github.com/${PROJECT_NAME}/issues) to see if your problem has already been addressed.
+Search our [GitHub Issues](https://github.com/my-project/issues) to see if your problem has already been addressed.
 
 ### 3. Open a Support Request
 

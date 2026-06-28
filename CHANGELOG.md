@@ -10,13 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Renamed repository from `nix-project-templates` to `boilerplate`.
 - Replaced `AGENTS.md` with `WORKFLOW.md` — structured LLM programming workflow.
-- Updated all flake URIs and documentation references.
+- Refactored to use `nix flake init` exclusively — removed custom `create-project` CLI.
+- Simplified root `flake.nix` — removed fenix dependency, packages output, and CLI script.
+- Replaced `${PROJECT_NAME}` placeholders with `my-project` defaults (nix flake init copies verbatim).
+- Root flake now supports all architectures (x86_64-linux, aarch64-linux, x86_64-darwin, aarch64-darwin).
 
 ### Added
 - `WORKFLOW.md` — phased AI-assisted development workflow integrated with Nix tooling.
 
 ### Removed
 - `AGENTS.md` — replaced by `WORKFLOW.md`.
+- `packages/create-project.nix` — replaced by `nix flake init -t`.
+- `fenix` input from root flake (individual templates carry their own toolchain inputs).
 
 ## [1.0.0] - 2026-04-11
 

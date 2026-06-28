@@ -1,8 +1,8 @@
 # Contributing Guide: Code Standards & Engineering Practices
 
 **Project:** boilerplate  
-**Version:** 1.1  
-**Date:** 2026-04-11
+**Version:** 2.0  
+**Date:** 2026-06-28
 
 ---
 
@@ -53,10 +53,8 @@ Scope is the module or layer being changed. Common scopes:
 
 | Scope | Maps to |
 |---|---|
-| `cli` | The create-project CLI tool |
 | `template` | Project templates |
-| `templates` | Changes to template files |
-| `nix` | `flake.nix`, `nix/` — all Nix expressions |
+| `nix` | `flake.nix` — all Nix expressions |
 
 Scope is optional but strongly encouraged. Omit it only for cross-cutting changes.
 

@@ -160,10 +160,10 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
    git add -A
    git commit -m "<type>(<scope>): <subject>"
    ```
-4. Verify the built artifact works end-to-end:
+4. Verify the template works end-to-end:
    ```bash
-   nix build
-   ./result/bin/create-project <template> test-project
+   nix flake init -t .#<template>
+   # or test in a temp dir
    ```
 
 ### Gate
@@ -197,9 +197,7 @@ The dev shell provides: `rust-analyzer`, `rustfmt`, `clippy`, Rust stable toolch
 │   │   └── pyproject.toml
 │   └── nixos-module/         # NixOS module
 │       └── default.nix
-├── packages/
-│   └── create-project.nix    # CLI tool (bash script via writeShellScriptBin)
-├── flake.nix                 # Root flake — exposes packages, devShells, templates
+├── flake.nix                 # Root flake — exposes devShells and templates
 ├── flake.lock
 ├── README.md
 ├── CONTRIBUTING.md
@@ -245,32 +243,27 @@ chore(nix): bump nixpkgs input to 24.11
 ```
 
 **Types:** `feat` `fix` `refactor` `test` `chore` `docs` `perf` `ci` `revert`
-**Scopes:** `cli` `template` `nix` `docs`
+**Scopes:** `template` `nix` `docs`
 **Subject rules:** imperative mood, no capital first letter, no trailing period, max 72 chars.
 
-## CLI Usage
+## Usage
 
 ```bash
-# Build and run directly from GitHub (no clone required)
-nix run github:kodicw/boilerplate -- <template> [project-name]
-nix run github:kodicw/boilerplate -- general my-infrastructure
-
-# From a local clone
-nix build
-./result/bin/create-project rust my-app
-./result/bin/create-project python
-./result/bin/create-project nixos-module
-
-# Use nix flake init for template-only scaffolding
+# Initialize a project from a template
 nix flake init -t github:kodicw/boilerplate#rust
+nix flake init -t github:kodicw/boilerplate#python
 nix flake init -t github:kodicw/boilerplate#general
+nix flake init -t github:kodicw/boilerplate#nixos-module
+
+# Default template (general)
+nix flake init -t github:kodicw/boilerplate
 ```
+
+After init, rename `my-project` references to match your actual project name.
 
 ## Key Design Decisions
 
-- Templates are **static files** copied verbatim during project creation. No code generation beyond placeholder substitution.
-- The CLI is a **bash script** (via `pkgs.writeShellScriptBin`), not a compiled binary. It lives in `packages/create-project.nix`.
-- Template placeholders use `${VAR}` syntax for simple text replacement.
-- The root `flake.nix` exposes both `packages` (the CLI) and `templates` (for `nix flake init -t`).
-- The dev shell uses [fenix](https://github.com/nix-community/fenix) for Rust toolchain management — not nixpkgs' rustc.
-- Only `x86_64-linux` is targeted in the root flake. Templates support multi-arch via `flake-utils`.
+- Templates are **static files** copied verbatim by `nix flake init`. No custom CLI, no code generation.
+- The root `flake.nix` exposes `templates` (for `nix flake init -t`) and a minimal `devShells` for editing the repo.
+- Template files use `my-project` as a default name — users rename after init.
+- Multi-arch support via `flake-utils` in both the root flake and individual templates.

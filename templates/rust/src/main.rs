@@ -1,4 +1,4 @@
-//! ${PROJECT_NAME}
+//! my-project
 //!
 //! Quick start:
 //!   nix develop

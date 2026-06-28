@@ -1,6 +1,6 @@
 # Contributing Guide: Code Standards & Engineering Practices
 
-**Project:** ${PROJECT_NAME}  
+**Project:** my-project  
 **Version:** 0.1  
 **Date:** 2026-04-11
 
@@ -328,7 +328,7 @@ statix check .
 
 ### Templates
 
-Template files use `${PROJECT_NAME}` and `${PROJECT_DESCRIPTION}` placeholders that are replaced during project creation. Keep placeholders consistent across all templates.
+Template files use sensible defaults (e.g., `my-project`). After running `nix flake init`, rename these to match your actual project.
 
 ---
 

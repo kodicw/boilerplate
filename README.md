@@ -1,6 +1,6 @@
 # boilerplate
 
-Project templates and a CLI tool (`create-project`) for scaffolding reproducible, Nix-backed projects.
+Project templates for scaffolding reproducible, Nix-backed projects via `nix flake init`.
 
 ## Philosophy
 
@@ -11,39 +11,33 @@ Project templates and a CLI tool (`create-project`) for scaffolding reproducible
 ## Quick Start
 
 ```bash
-# Scaffold a project directly from GitHub (no clone required)
-nix run github:kodicw/boilerplate -- <template> [project-name]
-nix run github:kodicw/boilerplate -- general my-app
-
-# Or use nix flake init for template-only scaffolding
+# Initialize a project from a template
 nix flake init -t github:kodicw/boilerplate#rust
+nix flake init -t github:kodicw/boilerplate#python
 nix flake init -t github:kodicw/boilerplate#general
+nix flake init -t github:kodicw/boilerplate#nixos-module
+
+# Default template (general)
+nix flake init -t github:kodicw/boilerplate
 ```
 
-From a local clone:
-
-```bash
-nix build
-./result/bin/create-project rust my-app
-./result/bin/create-project python
-./result/bin/create-project nixos-module
-```
+After init, rename `my-project` references in `flake.nix`, `Cargo.toml`, `pyproject.toml`, etc. to match your actual project name.
 
 ## Available Templates
 
-| Template | Description |
-|----------|-------------|
-| `general` | Language-agnostic starter with Nix dev shell |
-| `rust` | Rust binary with fenix toolchain and Nix dev shell |
-| `python` | Python project with uv/Hatch and ruff |
-| `nixos-module` | NixOS service module skeleton |
+| Template | Description | Init command |
+|----------|-------------|-------------|
+| `general` | Language-agnostic starter with Nix dev shell | `nix flake init -t github:kodicw/boilerplate#general` |
+| `rust` | Rust binary with fenix toolchain and Nix dev shell | `nix flake init -t github:kodicw/boilerplate#rust` |
+| `python` | Python project with uv/Hatch and ruff | `nix flake init -t github:kodicw/boilerplate#python` |
+| `nixos-module` | NixOS service module skeleton | `nix flake init -t github:kodicw/boilerplate#nixos-module` |
 
-Each template includes community health files (CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, etc.) and a `flake.nix` that passes `nix flake check` out of the box.
+Each template includes community health files (CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, etc.) and a `flake.nix` that works out of the box.
 
 ## Development
 
 ```bash
-nix develop          # Enter dev shell (rust-analyzer, clippy, nixfmt, statix)
+nix develop          # Enter dev shell (nixfmt, statix)
 nix flake check      # Run all checks
 ```
 

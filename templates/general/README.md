@@ -1,6 +1,6 @@
-# ${PROJECT_NAME}
+# my-project
 
-${PROJECT_DESCRIPTION}
+A new project.
 
 ## Overview
 
